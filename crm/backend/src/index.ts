@@ -15,8 +15,11 @@ import smsRoutes from './routes/sms.js';
 import documentRoutes from './routes/documents.js';
 import importRoutes from './routes/imports.js';
 import dashboardRoutes from './routes/dashboard.js';
+import adminUserRoutes from './routes/admin_users.js';
+import settingsRoutes from './routes/settings.js';
 import { validateTwilioCredentials } from './services/twilio.js';
 import { validateSpacesCredentials } from './services/spaces.js';
+import { validateSendgridCredentials } from './services/email.js';
 
 const PORT = Number(process.env.PORT ?? 3001);
 const HOST = process.env.HOST ?? '0.0.0.0';
@@ -54,6 +57,8 @@ async function buildServer() {
   await app.register(documentRoutes);
   await app.register(importRoutes);
   await app.register(dashboardRoutes);
+  await app.register(adminUserRoutes);
+  await app.register(settingsRoutes);
 
   return app;
 }
@@ -62,6 +67,7 @@ async function start() {
   const app = await buildServer();
   validateTwilioCredentials(app.log);
   validateSpacesCredentials(app.log);
+  validateSendgridCredentials(app.log);
   try {
     await app.listen({ port: PORT, host: HOST });
     app.log.info(`API listening on http://${HOST}:${PORT}`);

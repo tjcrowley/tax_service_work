@@ -9,6 +9,8 @@ import smsRoutes from '../routes/sms.js';
 import documentRoutes from '../routes/documents.js';
 import importRoutes from '../routes/imports.js';
 import dashboardRoutes from '../routes/dashboard.js';
+import adminUserRoutes from '../routes/admin_users.js';
+import settingsRoutes from '../routes/settings.js';
 
 export async function buildTestApp(): Promise<FastifyInstance> {
   const app = Fastify({ logger: false });
@@ -24,6 +26,8 @@ export async function buildTestApp(): Promise<FastifyInstance> {
   await app.register(documentRoutes);
   await app.register(importRoutes);
   await app.register(dashboardRoutes);
+  await app.register(adminUserRoutes);
+  await app.register(settingsRoutes);
   await app.ready();
   return app;
 }
