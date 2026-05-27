@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Katie's Tax Relief — Warm & Human (Mockup 2)</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Arial', sans-serif; color: #2d2d2d; }
+
+  /* NAV */
+  nav { background: #fff; border-bottom: 1px solid #f0e8e0; padding: 0 60px; display: flex; align-items: center; justify-content: space-between; height: 70px; }
+  .logo { font-family: Georgia, serif; font-size: 1.4rem; color: #7b3f1e; }
+  .logo span { color: #e07b39; }
+  nav ul { list-style: none; display: flex; gap: 36px; }
+  nav ul a { color: #555; text-decoration: none; font-size: 0.9rem; }
+  .cta-btn { background: #e07b39; color: #fff; padding: 11px 26px; border-radius: 30px; text-decoration: none; font-weight: bold; font-size: 0.9rem; }
+
+  /* HERO */
+  .hero { background: linear-gradient(160deg, #fff8f3 0%, #feeee0 100%); padding: 80px 80px 0; display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: end; }
+  .hero-text { padding-bottom: 60px; }
+  .hero-eyebrow { color: #e07b39; font-size: 0.85rem; font-weight: bold; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 16px; }
+  .hero h1 { font-family: Georgia, serif; font-size: 3rem; line-height: 1.25; color: #2d1a0e; margin-bottom: 20px; }
+  .hero p { color: #666; line-height: 1.7; font-size: 1rem; max-width: 460px; margin-bottom: 32px; }
+  .hero-promise { background: #fff; border-left: 4px solid #e07b39; padding: 16px 20px; border-radius: 0 8px 8px 0; margin-bottom: 32px; font-size: 0.9rem; color: #444; font-style: italic; }
+  .btn-primary { background: #e07b39; color: #fff; padding: 16px 36px; border-radius: 30px; text-decoration: none; font-weight: bold; display: inline-block; font-size: 1rem; margin-right: 16px; }
+  .btn-text { color: #e07b39; font-size: 0.9rem; text-decoration: underline; cursor: pointer; }
+
+  .hero-photo { background: linear-gradient(to top, #feeee0 0%, transparent 30%), url('https://images.unsplash.com/photo-1556761175-4b46a572b786?w=600') center/cover; border-radius: 20px 20px 0 0; min-height: 420px; display: flex; align-items: flex-end; padding: 24px; }
+  .team-badge { background: #fff; border-radius: 12px; padding: 16px 20px; box-shadow: 0 4px 20px rgba(0,0,0,0.1); }
+  .team-badge strong { display: block; font-size: 0.95rem; color: #2d1a0e; }
+  .team-badge span { font-size: 0.8rem; color: #888; }
+
+  /* EMPATHY SECTION */
+  .empathy { background: #fff; padding: 72px 80px; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+  .empathy h2 { font-family: Georgia, serif; font-size: 2rem; color: #2d1a0e; margin-bottom: 20px; }
+  .empathy p { color: #666; line-height: 1.7; margin-bottom: 16px; }
+  .pain-points { list-style: none; }
+  .pain-points li { padding: 12px 0; border-bottom: 1px solid #f5ede6; font-size: 0.9rem; color: #555; display: flex; align-items: center; gap: 10px; }
+  .pain-points li::before { content: "✓"; color: #e07b39; font-weight: bold; }
+  .empathy-cta { background: #feeee0; border-radius: 16px; padding: 36px; }
+  .empathy-cta h3 { font-family: Georgia, serif; font-size: 1.4rem; color: #2d1a0e; margin-bottom: 12px; }
+  .empathy-cta p { color: #666; font-size: 0.9rem; margin-bottom: 24px; line-height: 1.6; }
+  .empathy-cta input { width: 100%; padding: 12px 16px; border: 1px solid #e0c8b8; border-radius: 8px; margin-bottom: 10px; font-size: 0.9rem; }
+  .empathy-cta button { width: 100%; background: #e07b39; color: #fff; border: none; padding: 14px; border-radius: 8px; font-weight: bold; font-size: 0.95rem; cursor: pointer; }
+  .empathy-cta small { display: block; text-align: center; color: #999; font-size: 0.75rem; margin-top: 10px; }
+
+  /* PROCESS */
+  .process { background: #faf5f0; padding: 72px 80px; }
+  .process h2 { font-family: Georgia, serif; font-size: 2rem; color: #2d1a0e; text-align: center; margin-bottom: 48px; }
+  .steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; }
+  .step { text-align: center; padding: 24px; }
+  .step-num { width: 52px; height: 52px; background: #e07b39; color: #fff; border-radius: 50%; font-size: 1.3rem; font-weight: bold; display: flex; align-items: center; justify-content: center; margin: 0 auto 16px; font-family: Georgia, serif; }
+  .step h3 { font-size: 1rem; color: #2d1a0e; margin-bottom: 8px; }
+  .step p { font-size: 0.85rem; color: #777; line-height: 1.5; }
+
+  /* TESTIMONIALS */
+  .testimonials { background: #fff; padding: 72px 80px; }
+  .testimonials h2 { font-family: Georgia, serif; font-size: 2rem; color: #2d1a0e; text-align: center; margin-bottom: 40px; }
+  .testi-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+  .testi-card { background: #faf5f0; border-radius: 12px; padding: 28px; }
+  .stars { color: #f5a623; font-size: 1rem; margin-bottom: 12px; }
+  .testi-card p { font-style: italic; font-size: 0.9rem; color: #555; line-height: 1.6; margin-bottom: 16px; }
+  .testi-author { font-weight: bold; font-size: 0.85rem; color: #2d1a0e; }
+  .testi-detail { font-size: 0.8rem; color: #e07b39; }
+
+  /* FOOTER */
+  footer { background: #2d1a0e; color: #a0886f; padding: 40px 80px; display: flex; justify-content: space-between; align-items: center; }
+  footer .logo-f { font-family: Georgia, serif; color: #fff; font-size: 1.2rem; }
+  footer p { font-size: 0.8rem; }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="logo">Katie's <span>Tax Relief</span></div>
+  <ul>
+    <li><a href="#">How It Works</a></li>
+    <li><a href="#">Services</a></li>
+    <li><a href="#">Stories</a></li>
+    <li><a href="#">About Us</a></li>
+  </ul>
+  <a href="#" class="cta-btn">Free Consultation</a>
+</nav>
+
+<section class="hero">
+  <div class="hero-text">
+    <div class="hero-eyebrow">Women-led. Client-first.</div>
+    <h1>Tax Debt Is<br>Heavy to Carry Alone</h1>
+    <p>We understand the stress, the letters, the sleepless nights. Our team of women tax professionals has helped thousands of people find real relief — and a path forward.</p>
+    <div class="hero-promise">"We don't just reduce your debt. We reduce your stress." — Katie, Founder</div>
+    <a href="#" class="btn-primary">Talk to Us — It's Free</a>
+    <span class="btn-text">See client stories</span>
+  </div>
+  <div class="hero-photo">
+    <div class="team-badge">
+      <strong>Women-Led Team</strong>
+      <span>All enrolled agents & CPAs</span>
+    </div>
+  </div>
+</section>
+
+<section class="empathy">
+  <div>
+    <h2>We've Heard It All —<br>We've Solved It All</h2>
+    <p>Tax debt doesn't make you a bad person. Life happens — divorce, job loss, a business that struggled. The IRS doesn't care. But we do.</p>
+    <ul class="pain-points">
+      <li>Years of unfiled returns piling up</li>
+      <li>IRS letters you're afraid to open</li>
+      <li>Wages being garnished right now</li>
+      <li>Bank levy threatening your account</li>
+      <li>A lien on your home or property</li>
+      <li>Debt you can't possibly afford to pay</li>
+    </ul>
+  </div>
+  <div class="empathy-cta">
+    <h3>Get Your Free<br>Relief Estimate</h3>
+    <p>Tell us your situation in 60 seconds. We'll tell you exactly what programs you qualify for — no obligation, no pressure.</p>
+    <input type="text" placeholder="Your name">
+    <input type="tel" placeholder="Phone number">
+    <input type="email" placeholder="Email address">
+    <button>See My Relief Options →</button>
+    <small>🔒 100% confidential. We never share your information.</small>
+  </div>
+</section>
+
+<section class="process">
+  <h2>How We Get You to Relief</h2>
+  <div class="steps">
+    <div class="step"><div class="step-num">1</div><h3>Free Consultation</h3><p>We review your situation confidentially — no judgment, no obligation.</p></div>
+    <div class="step"><div class="step-num">2</div><h3>Relief Analysis</h3><p>We identify every program you qualify for and calculate your real options.</p></div>
+    <div class="step"><div class="step-num">3</div><h3>We Negotiate</h3><p>Our team handles all IRS communication. You don't talk to them — we do.</p></div>
+    <div class="step"><div class="step-num">4</div><h3>You're Free</h3><p>Debt resolved. Liens removed. Life back on track.</p></div>
+  </div>
+</section>
+
+<section class="testimonials">
+  <h2>Real People. Real Relief.</h2>
+  <div class="testi-grid">
+    <div class="testi-card">
+      <div class="stars">★★★★★</div>
+      <p>"I owed $67,000 and was terrified. They settled it for $3,800. I literally cried when they told me. These women saved my life."</p>
+      <div class="testi-author">Maria G.</div>
+      <div class="testi-detail">Settled: $67K → $3,800</div>
+    </div>
+    <div class="testi-card">
+      <div class="stars">★★★★★</div>
+      <p>"The IRS was garnishing my wages for three years. They stopped it in 11 days and got me into a plan I could actually afford."</p>
+      <div class="testi-author">James R.</div>
+      <div class="testi-detail">Levy released in 11 days</div>
+    </div>
+    <div class="testi-card">
+      <div class="stars">★★★★★</div>
+      <p>"I hadn't filed in 9 years. I was terrified of what would happen. They handled everything and I ended up getting a refund."</p>
+      <div class="testi-author">Sandra M.</div>
+      <div class="testi-detail">9 years of returns filed</div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="logo-f">Katie's Tax Relief</div>
+  <p>© 2024 · Women-led tax resolution · All rights reserved</p>
+  <p>Privacy · Terms · Disclaimer</p>
+</footer>
+
+</body>
+</html>

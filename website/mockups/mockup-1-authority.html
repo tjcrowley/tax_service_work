@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Katie's Tax Relief — Authority (Mockup 1)</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; color: #1a1a2e; }
+
+  /* NAV */
+  nav { background: #1a1a2e; padding: 0 40px; display: flex; align-items: center; justify-content: space-between; height: 64px; }
+  nav .logo { color: #fff; font-size: 1.3rem; font-weight: bold; letter-spacing: 1px; }
+  nav .logo span { color: #c9a84c; }
+  nav ul { list-style: none; display: flex; gap: 32px; }
+  nav ul a { color: #ccc; text-decoration: none; font-family: 'Arial', sans-serif; font-size: 0.9rem; letter-spacing: 0.5px; }
+  nav .cta-btn { background: #c9a84c; color: #fff; padding: 10px 24px; border-radius: 4px; text-decoration: none; font-family: Arial, sans-serif; font-size: 0.9rem; font-weight: bold; }
+
+  /* HERO */
+  .hero { background: linear-gradient(135deg, #1a1a2e 0%, #16213e 60%, #0f3460 100%); color: #fff; padding: 100px 80px; display: flex; align-items: center; gap: 80px; min-height: 520px; }
+  .hero-text { flex: 1; }
+  .hero-badge { background: rgba(201,168,76,0.2); border: 1px solid #c9a84c; color: #c9a84c; display: inline-block; padding: 6px 14px; border-radius: 20px; font-family: Arial, sans-serif; font-size: 0.75rem; letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 24px; }
+  .hero h1 { font-size: 3rem; line-height: 1.2; margin-bottom: 20px; }
+  .hero h1 em { color: #c9a84c; font-style: normal; }
+  .hero p { font-family: Arial, sans-serif; font-size: 1.05rem; color: #b0b8c9; line-height: 1.7; max-width: 500px; margin-bottom: 32px; }
+  .hero-actions { display: flex; gap: 16px; align-items: center; }
+  .btn-primary { background: #c9a84c; color: #fff; padding: 16px 36px; border-radius: 4px; text-decoration: none; font-family: Arial, sans-serif; font-weight: bold; font-size: 1rem; }
+  .btn-secondary { color: #c9a84c; font-family: Arial, sans-serif; font-size: 0.9rem; text-decoration: underline; cursor: pointer; }
+
+  .hero-card { background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.12); border-radius: 12px; padding: 32px; width: 320px; flex-shrink: 0; }
+  .hero-card h3 { color: #c9a84c; font-family: Arial, sans-serif; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 16px; }
+  .savings-row { display: flex; justify-content: space-between; margin-bottom: 12px; font-family: Arial, sans-serif; font-size: 0.9rem; color: #ccc; }
+  .savings-row .amount { color: #fff; font-weight: bold; }
+  .savings-divider { border: none; border-top: 1px solid rgba(255,255,255,0.1); margin: 16px 0; }
+  .savings-total { display: flex; justify-content: space-between; font-family: Arial, sans-serif; }
+  .savings-total .label { color: #b0b8c9; font-size: 0.9rem; }
+  .savings-total .value { color: #4ecb71; font-size: 1.5rem; font-weight: bold; }
+  .hero-card p { font-family: Arial, sans-serif; font-size: 0.75rem; color: #777; margin-top: 16px; }
+
+  /* TRUST BAR */
+  .trust-bar { background: #f8f6f0; border-bottom: 1px solid #e8e0d0; padding: 20px 80px; display: flex; align-items: center; gap: 48px; }
+  .trust-label { font-family: Arial, sans-serif; font-size: 0.75rem; color: #888; text-transform: uppercase; letter-spacing: 1px; white-space: nowrap; }
+  .trust-logos { display: flex; gap: 32px; align-items: center; }
+  .trust-badge { background: #fff; border: 1px solid #ddd; border-radius: 6px; padding: 8px 16px; font-family: Arial, sans-serif; font-size: 0.8rem; font-weight: bold; color: #444; }
+
+  /* STATS */
+  .stats { background: #fff; padding: 64px 80px; display: grid; grid-template-columns: repeat(4, 1fr); gap: 32px; text-align: center; border-bottom: 1px solid #eee; }
+  .stat-num { font-size: 2.8rem; font-weight: bold; color: #1a1a2e; }
+  .stat-num sup { font-size: 1.2rem; color: #c9a84c; }
+  .stat-label { font-family: Arial, sans-serif; font-size: 0.85rem; color: #777; margin-top: 6px; }
+
+  /* SERVICES */
+  .services { background: #f8f6f0; padding: 80px; }
+  .section-label { font-family: Arial, sans-serif; font-size: 0.75rem; color: #c9a84c; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 12px; }
+  .section-title { font-size: 2rem; color: #1a1a2e; margin-bottom: 48px; }
+  .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+  .service-card { background: #fff; border-radius: 10px; padding: 32px; border: 1px solid #e8e0d0; }
+  .service-icon { font-size: 2rem; margin-bottom: 16px; }
+  .service-card h3 { font-size: 1.1rem; color: #1a1a2e; margin-bottom: 10px; }
+  .service-card p { font-family: Arial, sans-serif; font-size: 0.875rem; color: #666; line-height: 1.6; }
+
+  /* CTA SECTION */
+  .cta-section { background: #1a1a2e; color: #fff; padding: 80px; text-align: center; }
+  .cta-section h2 { font-size: 2.2rem; margin-bottom: 16px; }
+  .cta-section p { font-family: Arial, sans-serif; color: #b0b8c9; margin-bottom: 36px; font-size: 1rem; }
+  .cta-form { display: flex; gap: 12px; max-width: 520px; margin: 0 auto; }
+  .cta-form input { flex: 1; padding: 14px 18px; border: none; border-radius: 4px; font-family: Arial, sans-serif; font-size: 0.9rem; }
+  .cta-form button { background: #c9a84c; color: #fff; border: none; padding: 14px 28px; border-radius: 4px; font-family: Arial, sans-serif; font-weight: bold; cursor: pointer; white-space: nowrap; }
+
+  /* FOOTER */
+  footer { background: #111; color: #666; padding: 24px 80px; font-family: Arial, sans-serif; font-size: 0.8rem; display: flex; justify-content: space-between; }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="logo">KATIE'S <span>TAX RELIEF</span></div>
+  <ul>
+    <li><a href="#">Services</a></li>
+    <li><a href="#">About</a></li>
+    <li><a href="#">Results</a></li>
+    <li><a href="#">FAQ</a></li>
+  </ul>
+  <a href="#" class="cta-btn">Free Consultation</a>
+</nav>
+
+<section class="hero">
+  <div class="hero-text">
+    <div class="hero-badge">IRS-Certified Tax Professionals</div>
+    <h1>Stop Owing.<br>Start <em>Living</em>.</h1>
+    <p>We negotiate directly with the IRS on your behalf — settling tax debt for a fraction of what you owe. No judgment. Just results.</p>
+    <div class="hero-actions">
+      <a href="#" class="btn-primary">Get Free Relief Estimate</a>
+      <span class="btn-secondary">See our results →</span>
+    </div>
+  </div>
+  <div class="hero-card">
+    <h3>Client Example</h3>
+    <div class="savings-row"><span>Original IRS Debt</span><span class="amount">$84,200</span></div>
+    <div class="savings-row"><span>Penalties & Interest</span><span class="amount">$31,450</span></div>
+    <div class="savings-row"><span>Total Owed</span><span class="amount">$115,650</span></div>
+    <hr class="savings-divider">
+    <div class="savings-total">
+      <span class="label">Final Settlement</span>
+      <span class="value">$4,200</span>
+    </div>
+    <p>*Results vary. This represents an actual client outcome. Individual results depend on your specific situation.</p>
+  </div>
+</section>
+
+<div class="trust-bar">
+  <span class="trust-label">Trusted &amp; Accredited</span>
+  <div class="trust-logos">
+    <div class="trust-badge">BBB A+</div>
+    <div class="trust-badge">IRS Enrolled Agents</div>
+    <div class="trust-badge">NAEA Member</div>
+    <div class="trust-badge">ASTPS Certified</div>
+  </div>
+</div>
+
+<section class="stats">
+  <div><div class="stat-num"><sup>$</sup>240M<sup>+</sup></div><div class="stat-label">Tax Debt Resolved</div></div>
+  <div><div class="stat-num">4,800<sup>+</sup></div><div class="stat-label">Clients Helped</div></div>
+  <div><div class="stat-num">97<sup>%</sup></div><div class="stat-label">Success Rate</div></div>
+  <div><div class="stat-num">18<sup>yrs</sup></div><div class="stat-label">IRS Experience</div></div>
+</section>
+
+<section class="services">
+  <div class="section-label">What We Do</div>
+  <div class="section-title">Complete Tax Resolution Services</div>
+  <div class="services-grid">
+    <div class="service-card"><div class="service-icon">📋</div><h3>Offer in Compromise</h3><p>Settle your tax debt for less than the full amount owed through the IRS's official settlement program.</p></div>
+    <div class="service-card"><div class="service-icon">🛡️</div><h3>Penalty Abatement</h3><p>Remove IRS penalties — sometimes wiping out 25–40% of your total balance with proper documentation.</p></div>
+    <div class="service-card"><div class="service-icon">⏸️</div><h3>Currently Not Collectible</h3><p>Temporarily halt IRS collection activity when you cannot afford to pay.</p></div>
+    <div class="service-card"><div class="service-icon">📅</div><h3>Installment Agreements</h3><p>Structured payment plans negotiated to fit your actual budget — not what the IRS demands.</p></div>
+    <div class="service-card"><div class="service-icon">⚡</div><h3>Levy &amp; Lien Release</h3><p>Stop wage garnishment and bank levies fast. Remove IRS liens from your property.</p></div>
+    <div class="service-card"><div class="service-icon">📊</div><h3>Unfiled Returns</h3><p>Get compliant without fear. We handle years of unfiled returns and negotiate the best outcome.</p></div>
+  </div>
+</section>
+
+<section class="cta-section">
+  <h2>Find Out What You Actually Owe</h2>
+  <p>Free, confidential consultation. No obligation. We'll tell you exactly what relief you qualify for.</p>
+  <div class="cta-form">
+    <input type="tel" placeholder="Your phone number">
+    <button>Get Free Estimate →</button>
+  </div>
+</section>
+
+<footer>
+  <span>© 2024 Katie's Tax Relief. All rights reserved.</span>
+  <span>Privacy Policy · Terms · Disclaimer</span>
+</footer>
+
+</body>
+</html>
