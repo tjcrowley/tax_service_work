@@ -6,6 +6,7 @@ import Login from './pages/Login';
 import Contacts from './pages/Contacts';
 import ContactDetail from './pages/ContactDetail';
 import Pipeline from './pages/Pipeline';
+import TasksPage from './pages/Tasks';
 
 function PlaceholderPage({ title }: { title: string }) {
   return (
@@ -33,7 +34,7 @@ export default function App() {
             <Route path="/contacts" element={<Contacts />} />
             <Route path="/contacts/:id" element={<ContactDetail />} />
             <Route path="/pipeline" element={<Pipeline />} />
-            <Route path="/tasks" element={<PlaceholderPage title="Tasks" />} />
+            <Route path="/tasks" element={<TasksPage />} />
             <Route path="/imports" element={<PlaceholderPage title="Imports" />} />
             <Route path="/settings" element={<PlaceholderPage title="Settings" />} />
           </Route>

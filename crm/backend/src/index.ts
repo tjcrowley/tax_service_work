@@ -6,6 +6,7 @@ import authRoutes from './routes/auth.js';
 import contactRoutes from './routes/contacts.js';
 import userRoutes from './routes/users.js';
 import activityRoutes from './routes/activities.js';
+import taskRoutes from './routes/tasks.js';
 
 const PORT = Number(process.env.PORT ?? 3001);
 const HOST = process.env.HOST ?? '0.0.0.0';
@@ -27,6 +28,7 @@ async function buildServer() {
   await app.register(userRoutes);
   await app.register(contactRoutes);
   await app.register(activityRoutes);
+  await app.register(taskRoutes);
 
   return app;
 }

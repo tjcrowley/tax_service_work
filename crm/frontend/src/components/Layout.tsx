@@ -1,27 +1,31 @@
-import { useState, type ReactNode } from 'react';
+import { useMemo, useState } from 'react';
 import { Link, NavLink, Outlet, useNavigate } from 'react-router-dom';
+import { useQuery } from '@tanstack/react-query';
 import { useAuth } from '../hooks/useAuth';
 import { initials } from '../lib/format';
+import { fetchMyTasks } from '../lib/tasks';
 
-type NavItem = {
-  to: string;
-  label: string;
-  badge?: ReactNode;
-};
-
-const NAV_ITEMS: NavItem[] = [
-  { to: '/', label: 'Dashboard' },
-  { to: '/contacts', label: 'Contacts' },
-  { to: '/pipeline', label: 'Pipeline' },
-  { to: '/tasks', label: 'Tasks' },
-  { to: '/imports', label: 'Imports' },
-  { to: '/settings', label: 'Settings' },
+const NAV_ITEMS: { to: string; label: string; key: string }[] = [
+  { to: '/', label: 'Dashboard', key: 'dashboard' },
+  { to: '/contacts', label: 'Contacts', key: 'contacts' },
+  { to: '/pipeline', label: 'Pipeline', key: 'pipeline' },
+  { to: '/tasks', label: 'Tasks', key: 'tasks' },
+  { to: '/imports', label: 'Imports', key: 'imports' },
+  { to: '/settings', label: 'Settings', key: 'settings' },
 ];
 
 export default function Layout() {
   const { user, logout } = useAuth();
   const navigate = useNavigate();
   const [mobileOpen, setMobileOpen] = useState(false);
+
+  const myTasksQuery = useQuery({
+    queryKey: ['my-tasks', { all: false }],
+    queryFn: () => fetchMyTasks(false),
+    enabled: Boolean(user),
+  });
+
+  const overdueCount = useMemo(() => myTasksQuery.data?.overdue.length ?? 0, [myTasksQuery.data]);
 
   const handleLogout = async () => {
     await logout();
@@ -56,7 +60,11 @@ export default function Layout() {
               }
             >
               <span>{item.label}</span>
-              {item.badge}
+              {item.key === 'tasks' && overdueCount > 0 && (
+                <span className="ml-2 inline-flex min-w-[1.25rem] items-center justify-center rounded-full bg-red-600 px-1.5 py-0.5 text-[10px] font-semibold text-white">
+                  {overdueCount}
+                </span>
+              )}
             </NavLink>
           ))}
         </nav>

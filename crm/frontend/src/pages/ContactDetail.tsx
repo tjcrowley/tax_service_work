@@ -11,6 +11,7 @@ import { formatCurrency, formatPhone, initials } from '../lib/format';
 import ContactForm from '../components/ContactForm';
 import ActivityTimeline from '../components/ActivityTimeline';
 import LogNotePanel from '../components/LogNotePanel';
+import TasksSidebar from '../components/TasksSidebar';
 
 type TabKey = 'timeline' | 'tasks' | 'documents';
 
@@ -135,7 +136,7 @@ export default function ContactDetail() {
               <LogNotePanel contactId={contact.id} />
             </div>
           )}
-          {tab === 'tasks' && <Placeholder text="Tasks coming in Phase 5." />}
+          {tab === 'tasks' && <TasksSidebar contactId={contact.id} />}
           {tab === 'documents' && <Placeholder text="Documents coming in Phase 7." />}
         </div>
       </div>
