@@ -6,6 +6,7 @@ import authPlugin from '../plugins/auth.js';
 import callRoutes from '../routes/calls.js';
 import twilioRoutes from '../routes/twilio.js';
 import smsRoutes from '../routes/sms.js';
+import documentRoutes from '../routes/documents.js';
 
 export async function buildTestApp(): Promise<FastifyInstance> {
   const app = Fastify({ logger: false });
@@ -18,6 +19,7 @@ export async function buildTestApp(): Promise<FastifyInstance> {
   await app.register(callRoutes);
   await app.register(twilioRoutes);
   await app.register(smsRoutes);
+  await app.register(documentRoutes);
   await app.ready();
   return app;
 }

@@ -14,6 +14,7 @@ import LogNotePanel from '../components/LogNotePanel';
 import TasksSidebar from '../components/TasksSidebar';
 import CallButton from '../components/CallButton';
 import SmsPanel from '../components/SmsPanel';
+import DocumentsPanel from '../components/DocumentsPanel';
 
 type TabKey = 'timeline' | 'sms' | 'tasks' | 'documents';
 
@@ -148,15 +149,11 @@ export default function ContactDetail() {
             <SmsPanel contactId={contact.id} disabled={contact.doNotSms} />
           )}
           {tab === 'tasks' && <TasksSidebar contactId={contact.id} />}
-          {tab === 'documents' && <Placeholder text="Documents coming in Phase 7." />}
+          {tab === 'documents' && <DocumentsPanel contactId={contact.id} />}
         </div>
       </div>
 
       <ContactForm open={editOpen} onClose={() => setEditOpen(false)} contact={contact} />
     </div>
   );
-}
-
-function Placeholder({ text }: { text: string }) {
-  return <div className="text-sm text-slate-500 p-6 text-center">{text}</div>;
 }

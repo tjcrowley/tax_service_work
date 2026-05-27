@@ -12,7 +12,9 @@ import taskRoutes from './routes/tasks.js';
 import callRoutes from './routes/calls.js';
 import twilioRoutes from './routes/twilio.js';
 import smsRoutes from './routes/sms.js';
+import documentRoutes from './routes/documents.js';
 import { validateTwilioCredentials } from './services/twilio.js';
+import { validateSpacesCredentials } from './services/spaces.js';
 
 const PORT = Number(process.env.PORT ?? 3001);
 const HOST = process.env.HOST ?? '0.0.0.0';
@@ -47,6 +49,7 @@ async function buildServer() {
   await app.register(callRoutes);
   await app.register(twilioRoutes);
   await app.register(smsRoutes);
+  await app.register(documentRoutes);
 
   return app;
 }
@@ -54,6 +57,7 @@ async function buildServer() {
 async function start() {
   const app = await buildServer();
   validateTwilioCredentials(app.log);
+  validateSpacesCredentials(app.log);
   try {
     await app.listen({ port: PORT, host: HOST });
     app.log.info(`API listening on http://${HOST}:${PORT}`);
