@@ -3,6 +3,8 @@ import Fastify from 'fastify';
 import cors from '@fastify/cors';
 import authPlugin from './plugins/auth.js';
 import authRoutes from './routes/auth.js';
+import contactRoutes from './routes/contacts.js';
+import userRoutes from './routes/users.js';
 
 const PORT = Number(process.env.PORT ?? 3001);
 const HOST = process.env.HOST ?? '0.0.0.0';
@@ -21,6 +23,8 @@ async function buildServer() {
   app.get('/health', async () => ({ ok: true }));
 
   await app.register(authRoutes);
+  await app.register(userRoutes);
+  await app.register(contactRoutes);
 
   return app;
 }

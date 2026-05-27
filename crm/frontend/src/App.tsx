@@ -1,7 +1,11 @@
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
 import { AuthProvider } from './contexts/AuthContext';
 import ProtectedRoute from './components/ProtectedRoute';
+import Layout from './components/Layout';
 import Login from './pages/Login';
+import Contacts from './pages/Contacts';
+import ContactDetail from './pages/ContactDetail';
+import Pipeline from './pages/Pipeline';
 
 function PlaceholderPage({ title }: { title: string }) {
   return (
@@ -19,53 +23,20 @@ export default function App() {
         <Routes>
           <Route path="/login" element={<Login />} />
           <Route
-            path="/"
             element={
               <ProtectedRoute>
-                <PlaceholderPage title="Dashboard" />
+                <Layout />
               </ProtectedRoute>
             }
-          />
-          <Route
-            path="/contacts"
-            element={
-              <ProtectedRoute>
-                <PlaceholderPage title="Contacts" />
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            path="/pipeline"
-            element={
-              <ProtectedRoute>
-                <PlaceholderPage title="Pipeline" />
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            path="/tasks"
-            element={
-              <ProtectedRoute>
-                <PlaceholderPage title="Tasks" />
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            path="/imports"
-            element={
-              <ProtectedRoute>
-                <PlaceholderPage title="Imports" />
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            path="/settings"
-            element={
-              <ProtectedRoute>
-                <PlaceholderPage title="Settings" />
-              </ProtectedRoute>
-            }
-          />
+          >
+            <Route path="/" element={<PlaceholderPage title="Dashboard" />} />
+            <Route path="/contacts" element={<Contacts />} />
+            <Route path="/contacts/:id" element={<ContactDetail />} />
+            <Route path="/pipeline" element={<Pipeline />} />
+            <Route path="/tasks" element={<PlaceholderPage title="Tasks" />} />
+            <Route path="/imports" element={<PlaceholderPage title="Imports" />} />
+            <Route path="/settings" element={<PlaceholderPage title="Settings" />} />
+          </Route>
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </AuthProvider>
