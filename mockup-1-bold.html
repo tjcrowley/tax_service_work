@@ -94,6 +94,31 @@
 
   /* MOCKUP LABEL */
   .mockup-label { position: fixed; bottom: 1rem; right: 1rem; background: #e8c97a; color: #1a1a2e; padding: 0.5rem 1rem; border-radius: 20px; font-family: sans-serif; font-size: 0.8rem; font-weight: bold; z-index: 9999; }
+
+  /* MOBILE */
+  @media (max-width: 768px) {
+    nav ul { display: none; }
+    nav { padding: 1rem; }
+    .hero { padding: 3rem 1.2rem; }
+    .hero-content { grid-template-columns: 1fr; gap: 2.5rem; }
+    .hero-text h1 { font-size: 2.2rem; }
+    .hero-stats { grid-template-columns: repeat(3, 1fr); gap: 0.8rem; }
+    .stat .num { font-size: 1.6rem; }
+    .trust-bar-inner { flex-direction: column; align-items: flex-start; }
+    .services-grid { grid-template-columns: repeat(2, 1fr); }
+    .why-us-inner { grid-template-columns: 1fr; gap: 2rem; }
+    .why-img-placeholder { height: 200px; }
+    .testimonials-grid { grid-template-columns: 1fr; }
+    .footer-inner { grid-template-columns: 1fr; gap: 2rem; }
+    .footer-bottom { flex-direction: column; gap: 0.5rem; }
+  }
+  @media (max-width: 480px) {
+    .hero-text h1 { font-size: 1.9rem; }
+    .services-grid { grid-template-columns: 1fr; }
+    .hero-stats { grid-template-columns: 1fr; }
+    .hero-cta { flex-direction: column; }
+    .hero-cta a { text-align: center; }
+  }
 </style>
 </head>
 <body>

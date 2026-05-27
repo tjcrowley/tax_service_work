@@ -93,6 +93,30 @@
   .footer-bar { max-width: 1100px; margin: 2rem auto 0; padding-top: 2rem; border-top: 1px solid #222; display: flex; justify-content: space-between; font-size: 0.8rem; }
 
   .mockup-label { position: fixed; bottom: 1rem; right: 1rem; background: #2d6a9f; color: #fff; padding: 0.5rem 1rem; border-radius: 20px; font-size: 0.8rem; font-weight: bold; z-index: 9999; }
+
+  /* MOBILE */
+  @media (max-width: 768px) {
+    nav ul { display: none; }
+    nav { padding: 1rem; }
+    .hero { padding: 3rem 1.2rem; }
+    .hero-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+    .hero h1 { font-size: 2.2rem; }
+    .hero-metrics { flex-wrap: wrap; gap: 1rem; }
+    .logos-inner { justify-content: flex-start; gap: 0.75rem; }
+    .process-steps { grid-template-columns: repeat(2, 1fr); }
+    .process-steps::before { display: none; }
+    .services-grid { grid-template-columns: repeat(2, 1fr); }
+    .t-grid { grid-template-columns: 1fr; }
+    .footer-grid { grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+    .footer-bar { flex-direction: column; gap: 0.5rem; }
+  }
+  @media (max-width: 480px) {
+    .hero h1 { font-size: 1.9rem; }
+    .services-grid { grid-template-columns: 1fr; }
+    .process-steps { grid-template-columns: 1fr; }
+    .footer-grid { grid-template-columns: 1fr; }
+    .hero-actions { flex-direction: column; align-items: flex-start; }
+  }
 </style>
 </head>
 <body>
