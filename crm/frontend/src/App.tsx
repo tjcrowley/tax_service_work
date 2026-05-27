@@ -8,6 +8,7 @@ import ContactDetail from './pages/ContactDetail';
 import Pipeline from './pages/Pipeline';
 import TasksPage from './pages/Tasks';
 import Imports from './pages/Imports';
+import Dashboard from './pages/Dashboard';
 
 function PlaceholderPage({ title }: { title: string }) {
   return (
@@ -31,7 +32,7 @@ export default function App() {
               </ProtectedRoute>
             }
           >
-            <Route path="/" element={<PlaceholderPage title="Dashboard" />} />
+            <Route path="/" element={<Dashboard />} />
             <Route path="/contacts" element={<Contacts />} />
             <Route path="/contacts/:id" element={<ContactDetail />} />
             <Route path="/pipeline" element={<Pipeline />} />
