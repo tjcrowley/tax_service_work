@@ -1,6 +1,8 @@
 import 'dotenv/config';
 import Fastify from 'fastify';
 import cors from '@fastify/cors';
+import authPlugin from './plugins/auth.js';
+import authRoutes from './routes/auth.js';
 
 const PORT = Number(process.env.PORT ?? 3001);
 const HOST = process.env.HOST ?? '0.0.0.0';
@@ -14,7 +16,11 @@ async function buildServer() {
     credentials: true,
   });
 
+  await app.register(authPlugin);
+
   app.get('/health', async () => ({ ok: true }));
+
+  await app.register(authRoutes);
 
   return app;
 }
