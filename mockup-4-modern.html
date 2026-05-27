@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Katie's Tax Relief — Mockup 4: Modern/Premium</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; color: #fff; background: #0a0a0a; }
+
+  /* NAV */
+  nav { padding: 1.5rem 3rem; display: flex; justify-content: space-between; align-items: center; background: rgba(10,10,10,0.95); position: sticky; top: 0; z-index: 100; border-bottom: 1px solid rgba(255,255,255,0.06); backdrop-filter: blur(10px); }
+  .logo { font-size: 1.2rem; font-weight: 700; color: #fff; letter-spacing: -0.5px; }
+  .logo .dot { color: #4ade80; }
+  nav ul { list-style: none; display: flex; gap: 2.5rem; align-items: center; }
+  nav ul a { color: rgba(255,255,255,0.6); text-decoration: none; font-size: 0.9rem; letter-spacing: 0.3px; }
+  nav ul a:hover { color: #fff; }
+  .cta-nav { background: #fff; color: #0a0a0a !important; padding: 0.6rem 1.4rem; border-radius: 6px; font-weight: 600; font-size: 0.85rem !important; }
+
+  /* HERO */
+  .hero { min-height: 100vh; background: #0a0a0a; display: flex; align-items: center; padding: 5rem 3rem; position: relative; overflow: hidden; }
+  .hero::before { content: ''; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 900px; height: 900px; background: radial-gradient(circle, rgba(74,222,128,0.04) 0%, transparent 65%); pointer-events: none; }
+  .hero-inner { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1fr 420px; gap: 6rem; align-items: center; width: 100%; }
+  .hero-tag { display: inline-flex; align-items: center; gap: 0.5rem; background: rgba(74,222,128,0.1); border: 1px solid rgba(74,222,128,0.2); color: #4ade80; font-size: 0.75rem; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; padding: 0.4rem 1rem; border-radius: 30px; margin-bottom: 2rem; }
+  .hero-tag::before { content: '●'; font-size: 0.5rem; }
+  .hero h1 { font-size: 4rem; font-weight: 800; line-height: 1.1; letter-spacing: -2px; margin-bottom: 1.5rem; }
+  .hero h1 .dim { color: rgba(255,255,255,0.35); }
+  .hero p { font-size: 1.1rem; color: rgba(255,255,255,0.55); line-height: 1.7; margin-bottom: 2.5rem; max-width: 520px; }
+  .hero-actions { display: flex; gap: 1rem; align-items: center; margin-bottom: 4rem; }
+  .btn-green { background: #4ade80; color: #0a0a0a; padding: 0.9rem 2rem; border-radius: 8px; font-size: 0.95rem; font-weight: 700; text-decoration: none; display: inline-block; }
+  .btn-ghost { color: rgba(255,255,255,0.6); font-size: 0.9rem; text-decoration: none; display: flex; align-items: center; gap: 0.4rem; }
+  .hero-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: rgba(255,255,255,0.06); border-radius: 12px; overflow: hidden; }
+  .h-stat { background: rgba(255,255,255,0.03); padding: 1.5rem; }
+  .h-stat .n { font-size: 1.8rem; font-weight: 800; letter-spacing: -1px; color: #fff; }
+  .h-stat .l { font-size: 0.75rem; color: rgba(255,255,255,0.4); margin-top: 0.3rem; }
+
+  /* FORM CARD */
+  .form-card { background: #141414; border: 1px solid rgba(255,255,255,0.08); border-radius: 16px; padding: 2.5rem; }
+  .form-card h3 { font-size: 1.2rem; font-weight: 700; margin-bottom: 0.4rem; }
+  .form-card .sub { font-size: 0.85rem; color: rgba(255,255,255,0.4); margin-bottom: 2rem; }
+  .form-row { margin-bottom: 1rem; }
+  .form-row label { display: block; font-size: 0.75rem; font-weight: 600; color: rgba(255,255,255,0.5); text-transform: uppercase; letter-spacing: 0.8px; margin-bottom: 0.4rem; }
+  .form-row input, .form-row select { width: 100%; padding: 0.8rem 1rem; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; color: #fff; font-size: 0.95rem; }
+  .form-row input::placeholder { color: rgba(255,255,255,0.25); }
+  .form-row select option { background: #1a1a1a; color: #fff; }
+  .form-card button { width: 100%; padding: 1rem; background: #4ade80; color: #0a0a0a; border: none; border-radius: 8px; font-size: 0.95rem; font-weight: 700; cursor: pointer; margin-top: 0.5rem; }
+  .form-trust { text-align: center; font-size: 0.7rem; color: rgba(255,255,255,0.25); margin-top: 0.8rem; }
+
+  /* TICKER */
+  .ticker { background: #111; border-top: 1px solid rgba(255,255,255,0.06); border-bottom: 1px solid rgba(255,255,255,0.06); padding: 1rem 0; overflow: hidden; }
+  .ticker-track { display: flex; gap: 4rem; white-space: nowrap; font-size: 0.8rem; color: rgba(255,255,255,0.3); font-weight: 500; letter-spacing: 1px; text-transform: uppercase; padding: 0 2rem; }
+  .ticker-track .accent { color: #4ade80; }
+
+  /* SERVICES */
+  .services { padding: 6rem 3rem; }
+  .section-head { margin-bottom: 4rem; }
+  .section-head .label { font-size: 0.75rem; font-weight: 600; color: #4ade80; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 1rem; }
+  .section-head h2 { font-size: 2.5rem; font-weight: 800; letter-spacing: -1.5px; }
+  .section-head h2 .dim { color: rgba(255,255,255,0.25); }
+  .services-grid { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: rgba(255,255,255,0.05); border-radius: 16px; overflow: hidden; }
+  .svc { background: #0d0d0d; padding: 2.5rem 2rem; position: relative; }
+  .svc:hover { background: #111; }
+  .svc-num { font-size: 0.7rem; color: rgba(255,255,255,0.2); font-weight: 600; letter-spacing: 1px; margin-bottom: 1.5rem; }
+  .svc h3 { font-size: 1.1rem; font-weight: 700; margin-bottom: 0.8rem; }
+  .svc p { font-size: 0.85rem; color: rgba(255,255,255,0.45); line-height: 1.6; }
+  .svc .arrow { position: absolute; bottom: 2rem; right: 2rem; color: rgba(255,255,255,0.15); font-size: 1.2rem; }
+
+  /* NUMBERS */
+  .numbers { padding: 6rem 3rem; background: #0d0d0d; border-top: 1px solid rgba(255,255,255,0.04); border-bottom: 1px solid rgba(255,255,255,0.04); }
+  .numbers-inner { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: center; }
+  .numbers-text h2 { font-size: 2.5rem; font-weight: 800; letter-spacing: -1.5px; margin-bottom: 1.5rem; line-height: 1.2; }
+  .numbers-text h2 .dim { color: rgba(255,255,255,0.25); }
+  .numbers-text p { font-size: 1rem; color: rgba(255,255,255,0.45); line-height: 1.7; margin-bottom: 2rem; }
+  .numbers-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: rgba(255,255,255,0.05); border-radius: 16px; overflow: hidden; }
+  .big-num { background: #0a0a0a; padding: 2.5rem; }
+  .big-num .n { font-size: 2.5rem; font-weight: 800; letter-spacing: -2px; color: #4ade80; }
+  .big-num .l { font-size: 0.8rem; color: rgba(255,255,255,0.35); margin-top: 0.5rem; line-height: 1.4; }
+
+  /* TESTIMONIALS */
+  .testimonials { padding: 6rem 3rem; }
+  .t-scroll { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-top: 4rem; }
+  .t-card { background: #111; border: 1px solid rgba(255,255,255,0.06); border-radius: 16px; padding: 2rem; }
+  .t-score { font-size: 0.8rem; font-weight: 700; color: #4ade80; margin-bottom: 1rem; }
+  .t-text { font-size: 0.9rem; color: rgba(255,255,255,0.6); line-height: 1.7; font-style: italic; margin-bottom: 1.5rem; }
+  .t-meta { font-size: 0.8rem; }
+  .t-name { font-weight: 700; }
+  .t-result { color: #4ade80; margin-top: 0.3rem; }
+
+  /* CTA */
+  .cta { padding: 8rem 3rem; text-align: center; position: relative; overflow: hidden; }
+  .cta::before { content: ''; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 600px; height: 600px; background: radial-gradient(circle, rgba(74,222,128,0.06) 0%, transparent 70%); }
+  .cta h2 { font-size: 3.5rem; font-weight: 800; letter-spacing: -2px; margin-bottom: 1rem; position: relative; }
+  .cta p { font-size: 1.1rem; color: rgba(255,255,255,0.45); margin-bottom: 3rem; position: relative; }
+  .cta-phone { font-size: 2rem; font-weight: 800; color: #4ade80; margin-bottom: 0.5rem; letter-spacing: -1px; position: relative; }
+  .cta small { font-size: 0.8rem; color: rgba(255,255,255,0.25); display: block; margin-bottom: 2rem; }
+  .cta .btn-green { font-size: 1rem; padding: 1.1rem 2.5rem; position: relative; }
+
+  /* FOOTER */
+  footer { background: #060606; padding: 4rem 3rem; color: rgba(255,255,255,0.3); font-size: 0.85rem; border-top: 1px solid rgba(255,255,255,0.05); }
+  .footer-grid { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 3rem; margin-bottom: 3rem; }
+  footer h5 { color: rgba(255,255,255,0.5); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 1.2rem; }
+  footer ul { list-style: none; }
+  footer li { margin-bottom: 0.6rem; }
+  footer a { color: rgba(255,255,255,0.3); text-decoration: none; }
+  footer a:hover { color: rgba(255,255,255,0.6); }
+  .footer-bar { max-width: 1200px; margin: 0 auto; padding-top: 2rem; border-top: 1px solid rgba(255,255,255,0.04); display: flex; justify-content: space-between; font-size: 0.78rem; }
+
+  .mockup-label { position: fixed; bottom: 1rem; right: 1rem; background: #4ade80; color: #0a0a0a; padding: 0.5rem 1rem; border-radius: 20px; font-size: 0.8rem; font-weight: bold; z-index: 9999; }
+</style>
+</head>
+<body>
+
+<div class="mockup-label">Mockup 4 — Modern/Premium</div>
+
+<nav>
+  <div class="logo">Katie's<span class="dot">.</span>Tax</div>
+  <ul>
+    <li><a href="#">Services</a></li>
+    <li><a href="#">Results</a></li>
+    <li><a href="#">Team</a></li>
+    <li><a href="#">Blog</a></li>
+    <li><a href="#" class="cta-nav">Free Analysis</a></li>
+  </ul>
+</nav>
+
+<section class="hero">
+  <div class="hero-inner">
+    <div>
+      <div class="hero-tag">Women-Led IRS Resolution</div>
+      <h1>The IRS Owes You <span class="dim">Better Options.</span></h1>
+      <p>We're a team of former IRS agents and tax attorneys who've resolved over $127M in tax debt. We know what the IRS responds to — because we used to work there.</p>
+      <div class="hero-actions">
+        <a href="#" class="btn-green">Get Free Analysis →</a>
+        <a href="#" class="btn-ghost">See results ↓</a>
+      </div>
+      <div class="hero-stats">
+        <div class="h-stat"><div class="n">$127M</div><div class="l">Total resolved</div></div>
+        <div class="h-stat"><div class="n">4,800+</div><div class="l">Clients helped</div></div>
+        <div class="h-stat"><div class="n">65%</div><div class="l">Avg. reduction</div></div>
+      </div>
+    </div>
+    <div class="form-card">
+      <h3>Get Your Free IRS Analysis</h3>
+      <p class="sub">We pull your transcript. You see your options. No obligation.</p>
+      <div class="form-row">
+        <label>Name</label>
+        <input type="text" placeholder="Your name">
+      </div>
+      <div class="form-row">
+        <label>Phone</label>
+        <input type="tel" placeholder="Best number to reach you">
+      </div>
+      <div class="form-row">
+        <label>Amount owed</label>
+        <select>
+          <option>Select range...</option>
+          <option>Under $10,000</option>
+          <option>$10,000 – $50,000</option>
+          <option>$50,000 – $150,000</option>
+          <option>Over $150,000</option>
+        </select>
+      </div>
+      <div class="form-row">
+        <label>Current situation</label>
+        <select>
+          <option>What's happening...</option>
+          <option>Received IRS notice</option>
+          <option>Wage garnishment</option>
+          <option>Bank levy</option>
+          <option>Unfiled returns</option>
+          <option>Tax lien</option>
+        </select>
+      </div>
+      <button>See My Options →</button>
+      <p class="form-trust">256-bit encrypted · Confidential · No spam</p>
+    </div>
+  </div>
+</section>
+
+<div class="ticker">
+  <div class="ticker-track">
+    <span>BBB <span class="accent">A+</span> Accredited</span>
+    <span>·</span>
+    <span>IRS Authorized Provider</span>
+    <span>·</span>
+    <span>Licensed <span class="accent">All 50 States</span></span>
+    <span>·</span>
+    <span>Former IRS Agents on Staff</span>
+    <span>·</span>
+    <span>NTPI Fellows</span>
+    <span>·</span>
+    <span>$127M+ Resolved</span>
+    <span>·</span>
+    <span>Flat-Fee Pricing</span>
+    <span>·</span>
+    <span>Free Consultation</span>
+  </div>
+</div>
+
+<section class="services">
+  <div style="max-width: 1200px; margin: 0 auto;">
+    <div class="section-head">
+      <div class="label">What we do</div>
+      <h2>Every IRS Problem<br><span class="dim">Has a Resolution.</span></h2>
+    </div>
+    <div class="services-grid">
+      <div class="svc">
+        <div class="svc-num">01 / OFFER IN COMPROMISE</div>
+        <h3>Settle for Less</h3>
+        <p>Legally reduce your total IRS debt to what you can reasonably pay. We prepare and present the strongest possible offer.</p>
+        <span class="arrow">→</span>
+      </div>
+      <div class="svc">
+        <div class="svc-num">02 / INSTALLMENT AGREEMENTS</div>
+        <h3>Payment Plans</h3>
+        <p>Structured monthly payments that stop collection actions and give you a realistic path to resolution.</p>
+        <span class="arrow">→</span>
+      </div>
+      <div class="svc">
+        <div class="svc-num">03 / PENALTY ABATEMENT</div>
+        <h3>Remove Penalties</h3>
+        <p>The IRS added penalties on top of your balance. We know how to get them waived — first-time or reasonable cause.</p>
+        <span class="arrow">→</span>
+      </div>
+      <div class="svc">
+        <div class="svc-num">04 / LEVY & LIEN RELEASE</div>
+        <h3>Stop Collection</h3>
+        <p>Wage garnishments and bank levies can be stopped, often within days. We move fast when timing matters.</p>
+        <span class="arrow">→</span>
+      </div>
+      <div class="svc">
+        <div class="svc-num">05 / BACK TAX COMPLIANCE</div>
+        <h3>Unfiled Returns</h3>
+        <p>Years of unfiled taxes, resolved strategically. We minimize liability and get you back in good standing with the IRS.</p>
+        <span class="arrow">→</span>
+      </div>
+      <div class="svc">
+        <div class="svc-num">06 / BUSINESS TAX ISSUES</div>
+        <h3>Business Defense</h3>
+        <p>Payroll taxes, trust fund recovery, business liens — we protect owners from personal liability and get businesses back on track.</p>
+        <span class="arrow">→</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="numbers">
+  <div class="numbers-inner">
+    <div class="numbers-text">
+      <h2>The IRS Is Big.<br><span class="dim">We Know How It Thinks.</span></h2>
+      <p>Every senior advisor on our team spent years inside the IRS before joining us. We know what their agents look for, what they respond to, and exactly how to negotiate on your behalf.</p>
+      <a href="#" class="btn-green">Meet the Team →</a>
+    </div>
+    <div class="numbers-grid">
+      <div class="big-num">
+        <div class="n">$127M+</div>
+        <div class="l">Total IRS debt resolved for clients</div>
+      </div>
+      <div class="big-num">
+        <div class="n">4,800+</div>
+        <div class="l">Clients helped nationwide</div>
+      </div>
+      <div class="big-num">
+        <div class="n">65%</div>
+        <div class="l">Average debt reduction achieved</div>
+      </div>
+      <div class="big-num">
+        <div class="n">12+</div>
+        <div class="l">Avg. years IRS experience per advisor</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="testimonials">
+  <div style="max-width: 1200px; margin: 0 auto;">
+    <div class="section-head">
+      <div class="label">Client results</div>
+      <h2>Real Numbers.<br><span class="dim">Real People.</span></h2>
+    </div>
+    <div class="t-scroll">
+      <div class="t-card">
+        <div class="t-score">★★★★★ 5.0</div>
+        <p class="t-text">"Owed $89,000. They settled it for $6,200. Four months, total. I didn't have to speak to the IRS once. Absolute game changer."</p>
+        <div class="t-meta">
+          <div class="t-name">Michael T. — Dallas, TX</div>
+          <div class="t-result">$82,800 resolved via OIC</div>
+        </div>
+      </div>
+      <div class="t-card">
+        <div class="t-score">★★★★★ 5.0</div>
+        <p class="t-text">"Wage garnishment stopped in 72 hours. I'd been living with this for months. Should have called them the first day I got the letter."</p>
+        <div class="t-meta">
+          <div class="t-name">Sandra R. — Phoenix, AZ</div>
+          <div class="t-result">Garnishment released, payment plan set</div>
+        </div>
+      </div>
+      <div class="t-card">
+        <div class="t-score">★★★★★ 5.0</div>
+        <p class="t-text">"7 years of unfiled returns. I was paralyzed by it. They handled every single year, reduced my total liability by 70%, and the whole thing was over in six months."</p>
+        <div class="t-meta">
+          <div class="t-name">James K. — Chicago, IL</div>
+          <div class="t-result">7-year backlog, 70% reduction</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cta">
+  <h2>Find Out What You Qualify For.</h2>
+  <p>Your first consultation is free. We pull your IRS transcript and show you every option available to you — no pressure, no obligation.</p>
+  <div class="cta-phone">(800) 555-0TAX</div>
+  <small>Mon – Fri 8am–7pm PT · Evenings & weekends by appointment</small>
+  <br>
+  <a href="#" class="btn-green">Or schedule online →</a>
+</section>
+
+<footer>
+  <div class="footer-grid">
+    <div>
+      <h5>Katie's Tax Relief</h5>
+      <p>Women-led IRS resolution specialists. Former IRS agents, tax attorneys, and enrolled agents — all working for you. Licensed nationally.</p>
+    </div>
+    <div>
+      <h5>Services</h5>
+      <ul>
+        <li><a href="#">Offer in Compromise</a></li>
+        <li><a href="#">Payment Plans</a></li>
+        <li><a href="#">Penalty Abatement</a></li>
+        <li><a href="#">Levy Release</a></li>
+        <li><a href="#">Back Taxes</a></li>
+        <li><a href="#">Business Issues</a></li>
+      </ul>
+    </div>
+    <div>
+      <h5>Company</h5>
+      <ul>
+        <li><a href="#">Our Team</a></li>
+        <li><a href="#">Results</a></li>
+        <li><a href="#">Blog</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+    </div>
+    <div>
+      <h5>Legal</h5>
+      <ul>
+        <li><a href="#">Privacy Policy</a></li>
+        <li><a href="#">Terms</a></li>
+        <li><a href="#">Disclaimer</a></li>
+        <li><a href="#">Accessibility</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bar">
+    <span>© 2026 Katie's Tax Relief, Inc. All rights reserved.</span>
+    <span>Not affiliated with the IRS or any government agency.</span>
+  </div>
+</footer>
+
+</body>
+</html>
