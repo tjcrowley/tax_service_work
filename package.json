@@ -1,0 +1,30 @@
+{
+  "name": "tax-service-work",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Tax resolution CRM monorepo",
+  "workspaces": [
+    "shared",
+    "crm/backend",
+    "crm/frontend"
+  ],
+  "scripts": {
+    "dev": "npm-run-all --parallel dev:backend dev:frontend",
+    "dev:backend": "npm run dev --workspace=@tax/backend",
+    "dev:frontend": "npm run dev --workspace=@tax/frontend",
+    "build": "npm-run-all build:shared build:backend build:frontend",
+    "build:shared": "npm run build --workspace=@tax/shared --if-present",
+    "build:backend": "npm run build --workspace=@tax/backend --if-present",
+    "build:frontend": "npm run build --workspace=@tax/frontend --if-present",
+    "db:generate": "npm run db:generate --workspace=@tax/backend",
+    "db:migrate": "npm run db:migrate --workspace=@tax/backend",
+    "db:seed": "npm run db:seed --workspace=@tax/backend"
+  },
+  "devDependencies": {
+    "npm-run-all": "^4.1.5",
+    "typescript": "^5.6.3"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}
