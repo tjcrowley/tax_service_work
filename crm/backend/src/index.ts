@@ -13,6 +13,7 @@ import callRoutes from './routes/calls.js';
 import twilioRoutes from './routes/twilio.js';
 import smsRoutes from './routes/sms.js';
 import documentRoutes from './routes/documents.js';
+import importRoutes from './routes/imports.js';
 import { validateTwilioCredentials } from './services/twilio.js';
 import { validateSpacesCredentials } from './services/spaces.js';
 
@@ -50,6 +51,7 @@ async function buildServer() {
   await app.register(twilioRoutes);
   await app.register(smsRoutes);
   await app.register(documentRoutes);
+  await app.register(importRoutes);
 
   return app;
 }
