@@ -12,11 +12,14 @@ import ContactForm from '../components/ContactForm';
 import ActivityTimeline from '../components/ActivityTimeline';
 import LogNotePanel from '../components/LogNotePanel';
 import TasksSidebar from '../components/TasksSidebar';
+import CallButton from '../components/CallButton';
+import SmsPanel from '../components/SmsPanel';
 
-type TabKey = 'timeline' | 'tasks' | 'documents';
+type TabKey = 'timeline' | 'sms' | 'tasks' | 'documents';
 
 const TABS: { key: TabKey; label: string }[] = [
   { key: 'timeline', label: 'Timeline' },
+  { key: 'sms', label: 'SMS' },
   { key: 'tasks', label: 'Tasks' },
   { key: 'documents', label: 'Documents' },
 ];
@@ -71,6 +74,11 @@ export default function ContactDetail() {
               <a href={`tel:${contact.phone}`} className="text-brand-700 hover:underline">
                 {formatPhone(contact.phone)}
               </a>
+              <CallButton
+                contactId={contact.id}
+                phone={contact.phone}
+                disabled={contact.doNotCall}
+              />
               {contact.email && (
                 <a href={`mailto:${contact.email}`} className="text-brand-700 hover:underline">
                   {contact.email}
@@ -135,6 +143,9 @@ export default function ContactDetail() {
               <ActivityTimeline contactId={contact.id} />
               <LogNotePanel contactId={contact.id} />
             </div>
+          )}
+          {tab === 'sms' && (
+            <SmsPanel contactId={contact.id} disabled={contact.doNotSms} />
           )}
           {tab === 'tasks' && <TasksSidebar contactId={contact.id} />}
           {tab === 'documents' && <Placeholder text="Documents coming in Phase 7." />}
