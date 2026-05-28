@@ -1,0 +1,10 @@
+FROM node:20-alpine
+RUN apk add --no-cache python3 make g++
+WORKDIR /app
+COPY package.json package-lock.json ./
+COPY shared/ ./shared/
+COPY crm/backend/ ./crm/backend/
+RUN npm install --workspace=@tax/shared --workspace=@tax/backend --include=dev
+WORKDIR /app/crm/backend
+EXPOSE 3001
+CMD ["npx", "tsx", "src/index.ts"]

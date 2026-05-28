@@ -46,3 +46,4 @@ TOOLS.md
 MEMORY.md
 memory/
 BOOTSTRAP.md
+deploy/.env
