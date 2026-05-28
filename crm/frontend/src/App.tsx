@@ -13,6 +13,7 @@ import SettingsUsers from './pages/SettingsUsers';
 import SettingsCannedResponses from './pages/SettingsCannedResponses';
 import SettingsLeadSources from './pages/SettingsLeadSources';
 import AcceptInvite from './pages/AcceptInvite';
+import PwaTest from './pages/PwaTest';
 
 function SettingsHome() {
   return (
@@ -63,6 +64,7 @@ export default function App() {
             <Route path="/settings/users" element={<SettingsUsers />} />
             <Route path="/settings/canned-responses" element={<SettingsCannedResponses />} />
             <Route path="/settings/lead-sources" element={<SettingsLeadSources />} />
+            <Route path="/pwa-test" element={<PwaTest />} />
           </Route>
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>

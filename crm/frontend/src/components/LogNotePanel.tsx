@@ -1,20 +1,45 @@
 import { useState } from 'react';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { createNote } from '../lib/activities';
+import { enqueue } from '../lib/offlineQueue';
+import { notifyQueueChanged } from '../hooks/useOfflineQueue';
 
 type Props = {
   contactId: string;
 };
 
+type Submission = { kind: 'online'; text: string } | { kind: 'queued'; text: string };
+
 export default function LogNotePanel({ contactId }: Props) {
   const qc = useQueryClient();
   const [body, setBody] = useState('');
+  const [toast, setToast] = useState<string | null>(null);
 
   const mutation = useMutation({
-    mutationFn: (text: string) => createNote(contactId, text),
-    onSuccess: () => {
+    mutationFn: async (text: string): Promise<Submission> => {
+      if (typeof navigator !== 'undefined' && navigator.onLine === false) {
+        await enqueue({
+          url: `/contacts/${contactId}/activities`,
+          method: 'POST',
+          body: { type: 'note', body: text },
+          contactId,
+          type: 'note',
+        });
+        notifyQueueChanged();
+        return { kind: 'queued', text };
+      }
+      await createNote(contactId, text);
+      return { kind: 'online', text };
+    },
+    onSuccess: (result) => {
       setBody('');
-      qc.invalidateQueries({ queryKey: ['activities', contactId] });
+      if (result.kind === 'queued') {
+        setToast('Note saved — will sync when back online');
+      } else {
+        setToast('Note logged');
+        qc.invalidateQueries({ queryKey: ['activities', contactId] });
+      }
+      window.setTimeout(() => setToast(null), 3500);
     },
   });
 
@@ -39,6 +64,14 @@ export default function LogNotePanel({ contactId }: Props) {
       />
       {mutation.isError && (
         <p className="text-xs text-red-600">{(mutation.error as Error).message}</p>
+      )}
+      {toast && (
+        <p
+          role="status"
+          className="text-xs text-emerald-700 bg-emerald-50 border border-emerald-200 rounded px-2 py-1"
+        >
+          {toast}
+        </p>
       )}
       <div className="flex justify-end">
         <button

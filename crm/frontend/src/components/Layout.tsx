@@ -4,6 +4,7 @@ import { useQuery } from '@tanstack/react-query';
 import { useAuth } from '../hooks/useAuth';
 import { initials } from '../lib/format';
 import { fetchMyTasks } from '../lib/tasks';
+import OfflineBanner from './OfflineBanner';
 
 const NAV_ITEMS: { to: string; label: string; key: string }[] = [
   { to: '/', label: 'Dashboard', key: 'dashboard' },
@@ -100,6 +101,7 @@ export default function Layout() {
           </div>
         </header>
 
+        <OfflineBanner />
         <main className="flex-1 min-w-0">
           <Outlet />
         </main>

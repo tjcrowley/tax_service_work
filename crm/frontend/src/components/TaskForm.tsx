@@ -1,10 +1,12 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { fetchUsers } from '../lib/contacts';
 import { createTask, PRIORITY_LABELS, type TaskPriority } from '../lib/tasks';
+import { enqueue } from '../lib/offlineQueue';
+import { notifyQueueChanged } from '../hooks/useOfflineQueue';
 
 const formSchema = z.object({
   title: z.string().min(1, 'Title is required'),
@@ -25,6 +27,7 @@ type Props = {
 export default function TaskForm({ open, onClose, contactId }: Props) {
   const qc = useQueryClient();
   const usersQuery = useQuery({ queryKey: ['users'], queryFn: fetchUsers });
+  const [queuedMessage, setQueuedMessage] = useState<string | null>(null);
 
   const {
     register,
@@ -37,19 +40,44 @@ export default function TaskForm({ open, onClose, contactId }: Props) {
   });
 
   useEffect(() => {
-    if (open) reset({ title: '', description: '', dueAt: '', assignedTo: '', priority: 'normal' });
+    if (open) {
+      reset({ title: '', description: '', dueAt: '', assignedTo: '', priority: 'normal' });
+      setQueuedMessage(null);
+    }
   }, [open, reset]);
 
   const mutation = useMutation({
-    mutationFn: (v: FormValues) =>
-      createTask(contactId, {
+    mutationFn: async (v: FormValues) => {
+      const payload = {
         title: v.title,
         description: v.description || null,
         dueAt: v.dueAt ? new Date(v.dueAt).toISOString() : null,
         assignedTo: v.assignedTo || null,
         priority: v.priority as TaskPriority,
-      }),
-    onSuccess: () => {
+      };
+      if (typeof navigator !== 'undefined' && navigator.onLine === false) {
+        await enqueue({
+          url: `/contacts/${contactId}/tasks`,
+          method: 'POST',
+          body: payload,
+          contactId,
+          type: 'task',
+        });
+        notifyQueueChanged();
+        return { queued: true as const };
+      }
+      await createTask(contactId, payload);
+      return { queued: false as const };
+    },
+    onSuccess: (result) => {
+      if (result.queued) {
+        setQueuedMessage('Task queued for sync');
+        window.setTimeout(() => {
+          setQueuedMessage(null);
+          onClose();
+        }, 1500);
+        return;
+      }
       qc.invalidateQueries({ queryKey: ['contact-tasks', contactId] });
       qc.invalidateQueries({ queryKey: ['my-tasks'] });
       onClose();
@@ -134,6 +162,14 @@ export default function TaskForm({ open, onClose, contactId }: Props) {
           {mutation.isError && (
             <div className="rounded border border-red-200 bg-red-50 px-3 py-2 text-sm text-red-700">
               {(mutation.error as Error).message}
+            </div>
+          )}
+          {queuedMessage && (
+            <div
+              role="status"
+              className="rounded border border-emerald-200 bg-emerald-50 px-3 py-2 text-sm text-emerald-700"
+            >
+              {queuedMessage}
             </div>
           )}
         </div>
